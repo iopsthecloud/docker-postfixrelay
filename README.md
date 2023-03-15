@@ -66,7 +66,7 @@ Runs Postfix (as a relay) in Docker
 | MYORIGIN    | No                        | Domain of the "from" address                | domain.com                 | Needed for things like AWS SES where the domain must be set  |
 | MYNETWORKS  | No (default: 0.0.0.0/0)   | Networks that Postfix will forward mail for | 1.2.3.4/24, 5.6.7.8/24     | Single or multiple trusted network separated with a comma |
 | SMTP_TLS_SECURITY_LEVEL  | No                        | Sepcify TLS configuration $RELAY_HOST             | may              | default set to "encrypt"                                                             |
-
+| SMTP_SASL_AUTH_ENABLE  | No                        | Enable or disabled SASL AUTH             | no              | default set to "yes"                                                             |
 
 
 ### Ports
