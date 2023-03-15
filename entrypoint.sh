@@ -42,8 +42,15 @@ else
   postconf -e "myorigin = $MYORIGIN"
 fi
 
+# Permit less security level
+if [[ -z "$SMTP_TLKS_SECURITY_LEVEL" ]]; then
+  postconf -e "smtp_tls_security_level = encrypt"
+else
+  printf "# STATE: SMTP_TLKS_SECURITY_LEVEL is defined as $SMTP_TLKS_SECURITY_LEVEL\n"
+  postconf -e "smtp_tls_security_level = $SMTP_TLKS_SECURITY_LEVEL"
+fi
+
 # Client settings (for sending to the relay)
-postconf -e "smtp_tls_security_level = encrypt"
 postconf -e "smtp_tls_loglevel = 1"
 postconf -e "smtp_tls_note_starttls_offer = yes"
 postconf -e "smtp_sasl_auth_enable = yes"
