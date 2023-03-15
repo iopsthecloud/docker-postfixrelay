@@ -50,10 +50,17 @@ else
   postconf -e "smtp_tls_security_level = $SMTP_TLS_SECURITY_LEVEL"
 fi
 
+# Manage sasl auth
+if [[ -z "$SMTP_SASL_AUTH_ENABLE" ]]; then
+  postconf -e "smtp_sasl_auth_enable = yes"
+else
+  printf "# STATE: SMTP_TLS_SECURITY_LEVEL is defined as $SMTP_SASL_AUTH_ENABLE\n"
+  postconf -e "smtp_sasl_auth_enable = no"
+fi
+
 # Client settings (for sending to the relay)
 postconf -e "smtp_tls_loglevel = 1"
 postconf -e "smtp_tls_note_starttls_offer = yes"
-postconf -e "smtp_sasl_auth_enable = yes"
 postconf -e "smtp_sasl_security_options = noanonymous"
 postconf -e "smtp_sasl_password_maps = lmdb:/etc/postfix/sasl_passwd"
 postconf -e "smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt"
