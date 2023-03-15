@@ -43,11 +43,11 @@ else
 fi
 
 # Permit less security level
-if [[ -z "$SMTP_TLKS_SECURITY_LEVEL" ]]; then
+if [[ -z "$SMTP_TLS_SECURITY_LEVEL" ]]; then
   postconf -e "smtp_tls_security_level = encrypt"
 else
-  printf "# STATE: SMTP_TLKS_SECURITY_LEVEL is defined as $SMTP_TLKS_SECURITY_LEVEL\n"
-  postconf -e "smtp_tls_security_level = $SMTP_TLKS_SECURITY_LEVEL"
+  printf "# STATE: SMTP_TLS_SECURITY_LEVEL is defined as $SMTP_TLS_SECURITY_LEVEL\n"
+  postconf -e "smtp_tls_security_level = $SMTP_TLS_SECURITY_LEVEL"
 fi
 
 # Client settings (for sending to the relay)
