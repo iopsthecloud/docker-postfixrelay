@@ -54,7 +54,7 @@ fi
 if [[ -z "$SMTP_SASL_AUTH_ENABLE" ]]; then
   postconf -e "smtp_sasl_auth_enable = yes"
 else
-  printf "# STATE: SMTP_TLS_SECURITY_LEVEL is defined as $SMTP_SASL_AUTH_ENABLE\n"
+  printf "# STATE: SMTP_SASL_AUTH_ENABLE is defined as $SMTP_SASL_AUTH_ENABLE\n"
   postconf -e "smtp_sasl_auth_enable = $SMTP_SASL_AUTH_ENABLE"
 fi
 
